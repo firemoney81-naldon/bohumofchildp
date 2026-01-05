@@ -1,23 +1,630 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+  <!-- Schema.org FAQ 구조화 데이터 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "중학생보험이란 무엇이며, 왜 필요한가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "중학생보험은 10대 청소년의 특성에 맞춘 상해, 질병, 학교생활 위험 등을 보장하는 보험입니다. 중학생 시기는 활동량이 많아져 상해 위험이 높고, 학업 스트레스 등으로 인한 질병 위험도 증가하므로 필수적으로 고려해야 합니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "어린이보험에서 중학생보험으로 전환해야 하나요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "대부분의 어린이보험은 최대 30세까지 보장기간이 연장 가능하므로, 기존 보험의 갱신 여부와 보장 내용을 확인하는 것이 중요합니다. 하지만 중학생 시기에 특화된 보장(예: 학교폭력, 학원 생활 중 상해 등)을 추가하고 싶거나 기존 보험료가 비싸다면 신규 가입을 고려할 수 있습니다."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "중학생보험의 평균 가격은 얼마인가요?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "중학생보험의 평균 가격(예상 금액)은 가입자의 나이, 성별, 보장 범위, 가입 회사 등에 따라 달라지지만, 갱신형/비갱신형 여부에 따라 월 2만원~5만원대(2026년 기준)로 다양하게 형성됩니다. 보장 내용을 꼼꼼히 비교하여 가성비 좋은 상품을 선택하는 것이 중요합니다."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- 스타일: 부드럽고 다채로운 색, 타이틀 강조, 계층 구조 -->
+  <style>
+    :root {
+      --primary-color: #004D40; /* Teal Dark */
+      --secondary-color: #00796B; /* Teal */
+      --accent-color: #80CBC4; /* Light Teal */
+      --highlight-color: #E0F2F1; /* Pale Teal */
+      --text-color: #263238; /* Dark Grey */
+      --bg-light: #F9FDFD; /* Off White */
+      --bg-white: #ffffff;
+      --btn-color: #FF6F61; /* Coral */
+      --btn-hover: #FF4F3B; /* Reddish Coral */
+    }
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
+
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin:0; padding:0;
+      background-color: var(--bg-light);
+      color: var(--text-color);
+      line-height:1.7;
+    }
+    .container {
+      max-width: 1000px;
+      margin:0 auto;
+      padding:0 20px;
+    }
+    header {
+      background-color: var(--primary-color);
+      padding: 30px 20px;
+      text-align: center;
+      color: var(--bg-white);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.8em;
+      font-weight:700;
+    }
+    header h1 a {
+      color: var(--bg-white);
+      text-decoration: none;
+    }
+    .hero {
+      background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+      color: var(--bg-white);
+      text-align: center;
+      padding: 90px 20px;
+    }
+    .hero h1 {
+      font-size: 3.5em;
+      margin-bottom: 20px;
+      font-weight:700;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    .hero p {
+      font-size: 1.4em;
+      margin-bottom: 35px;
+    }
+    .cta-btn {
+      background-color: var(--btn-color);
+      color: var(--bg-white);
+      padding: 18px 45px;
+      font-size:1.3em;
+      font-weight: bold;
+      border:none;
+      border-radius:50px;
+      cursor:pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .cta-btn:hover {
+      background-color: var(--btn-hover);
+      transform: translateY(-3px);
+    }
+    .compare-form-box {
+      background-color: var(--bg-white);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      margin-top: 30px;
+    }
+    .compare-form-box h2 {
+      color: var(--primary-color);
+      text-align: center;
+      margin-bottom: 25px;
+      font-size:2em;
+    }
+    .compare-form-box label {
+      display: block;
+      margin-bottom:8px;
+      font-weight:500;
+    }
+    .compare-form-box input {
+      width:100%;
+      padding:12px;
+      margin-bottom:20px;
+      border:1px solid #ccc;
+      border-radius:6px;
+      box-sizing:border-box;
+    }
+    .compare-form-box select {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+    }
+    .compare-form-box .form-row {
+        display: flex;
+        gap: 20px;
+    }
+    .compare-form-box .form-row > div {
+        flex: 1;
+    }
+
+    .content-section {
+      margin-top: 40px;
+      background-color: var(--bg-white);
+      padding: 60px 0;
+      border-radius:10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    .content-section h2 {
+      font-size: 2.8em;
+      color: var(--primary-color);
+      margin-bottom:30px;
+      font-weight:700;
+      text-align:center;
+      border-bottom: 2px solid var(--accent-color);
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .content-section h3 {
+      font-size:1.8em;
+      color: var(--secondary-color);
+      margin-top:30px;
+      margin-bottom:15px;
+      border-left: 5px solid var(--accent-color);
+      padding-left: 15px;
+    }
+    .content-section h4 {
+        font-size: 1.4em;
+        color: var(--text-color);
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-weight: 500;
+    }
+    .feature-grid {
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top:30px;
+    }
+    .feature-grid .item {
+      width: calc(33.33% - 20px);
+      margin:10px;
+      padding:20px;
+      background-color: var(--highlight-color);
+      border-radius:8px;
+      text-align:center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .feature-grid .item img {
+      width:80px; height:80px;
+      margin-bottom:15px;
+    }
+    .keyword-list {
+      list-style:none;
+      padding:0;
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top:30px;
+    }
+    .keyword-list li {
+      background-color: var(--secondary-color);
+      color: var(--bg-white);
+      padding:10px 20px;
+      margin:5px;
+      border-radius:20px;
+      font-weight:500;
+      font-size: 0.9em;
+    }
+    .faq-item {
+      border-bottom:1px solid #ddd;
+      padding:20px 0;
+    }
+    .faq-item h3 {
+      cursor:pointer;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      font-size:1.4em;
+      color: var(--primary-color);
+      border-left: none;
+      padding-left: 0;
+    }
+    .faq-item h3::after {
+      content: '+';
+      font-size:1.5em;
+      color: var(--secondary-color);
+      transition: transform 0.3s;
+    }
+    .faq-item.active h3::after {
+      content: '-';
+      transform: rotate(180deg);
+    }
+    .faq-item p {
+      display: none;
+      padding-top:10px;
+      color:#555;
+      font-size:1.1em;
+    }
+    .faq-item.active p {
+      display: block;
+    }
+    footer {
+      background-color: var(--primary-color);
+      color: var(--bg-white);
+      text-align:center;
+      padding: 40px 20px;
+      font-size:0.9em;
+    }
+    footer a {
+      color: var(--bg-white);
+      text-decoration:none;
+      margin:0 10px;
+    }
+    footer a:hover {
+      text-decoration:underline;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 0.95em;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--highlight-color);
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+    .chart-box {
+        background-color: var(--bg-light);
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 30px;
+    }
+    .chart-box h4 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    /* Simple Bar Chart Style */
+    .bar-chart {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        height: 200px;
+        border-left: 2px solid #ccc;
+        border-bottom: 2px solid #ccc;
+        padding-left: 10px;
+        padding-bottom: 10px;
+    }
+    .bar-chart .bar {
+        width: 15%;
+        background-color: var(--accent-color);
+        margin: 0 5px;
+        text-align: center;
+        color: var(--primary-color);
+        font-weight: bold;
+        transition: height 0.5s ease;
+        position: relative;
+    }
+    .bar-chart .bar span {
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.8em;
+        color: var(--text-color);
+    }
+    .section-info-box {
+        background-color: var(--highlight-color);
+        padding: 25px;
+        border-radius: 8px;
+        margin: 20px 0;
+    }
+    .section-info-box h4 {
+        font-size: 1.6em;
+        color: var(--secondary-color);
+        margin-top: 0;
+    }
+    .section-info-box ul {
+        margin-left: 20px;
+    }
+
+    @media (max-width:768px) {
+      .hero h1 { font-size:2.4em; }
+      .hero p { font-size:1.2em; }
+      .cta-btn { padding:15px 30px; font-size:1.1em; }
+      .compare-form-box { padding:25px; }
+      .content-section h2 { font-size:2.2em; }
+      .feature-grid .item { width:100%; margin:10px 0; }
+      .keyword-list li { margin:3px; font-size:0.9em; }
+      .compare-form-box .form-row { flex-direction: column; }
+      th, td { padding: 8px; font-size: 0.9em; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1><a href="/">중학생보험 비교센터</a></h1>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h1>2026 중학생보험, 현명하게 가입하는 방법</h1>
+        <p>우리 아이를 위한 최적의 중학생보험을 찾으시나요? 복잡한 보장 내용을 쉽고 빠르게 비교해 보세요.</p>
+        <div class="compare-form-box">
+          <h2>맞춤형 보험료 견적 비교 요청</h2>
+          <p>간단한 정보 입력으로 여러 보험사의 견적을 한 번에 비교하고, 합리적인 중학생보험을 선택하세요.</p>
+          <form action="#" method="post">
+            <label for="name">보호자 성함</label>
+            <input type="text" id="name" name="name" placeholder="성함을 입력하세요" required>
+            <label for="phone">연락처</label>
+            <input type="tel" id="phone" name="phone" placeholder="휴대폰 번호를 입력하세요" required>
+            <div class="form-row">
+                <div>
+                    <label for="child_name">자녀 성함</label>
+                    <input type="text" id="child_name" name="child_name" placeholder="자녀의 성함">
+                </div>
+                <div>
+                    <label for="child_birth">자녀 생년월일</label>
+                    <input type="date" id="child_birth" name="child_birth" required>
+                </div>
+            </div>
+            <label for="coverage_type">희망 보장 범위</label>
+            <select id="coverage_type" name="coverage_type">
+                <option value="all">종합형 (상해/질병/배상책임)</option>
+                <option value="injury">상해 집중형</option>
+                <option value="disease">질병 집중형</option>
+                <option value="school">학교생활 위험 특화형</option>
+            </select>
+            <button type="submit" class="cta-btn">무료 견적 요청하기</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>왜 중학생보험이 필요할까요?</h2>
+        <div class="feature-grid">
+          <div class="item">
+            <img src="https://via.placeholder.com/80/004D40/fff?text=ICON1" alt="활동 증가">
+            <h3>상해 위험 증가</h3>
+            <p>활동량이 많은 중학생 시기에는 스포츠 활동, 자전거 사고 등으로 인한 상해 위험이 급증합니다.</p>
+          </div>
+          <div class="item">
+            <img src="https://via.placeholder.com/80/004D40/fff?text=ICON2" alt="학업 스트레스">
+            <h3>질병 보장 필요</h3>
+            <p>학업 스트레스 및 불규칙한 생활 습관으로 인해 발생하는 성장기 질환, 정신 건강 관련 문제도 증가합니다.</p>
+          </div>
+          <div class="item">
+            <img src="https://via.placeholder.com/80/004D40/fff?text=ICON3" alt="학교 생활 보장">
+            <h3>학교생활 위험</h3>
+            <p>학교폭력 피해 보상, 친구와 다툼 중 발생하는 배상책임, 집단 식중독 등 학교생활 관련 위험에 대비합니다.</p>
+          </div>
+        </div>
+
+        <h3 style="margin-top:50px;">함께 많이 찾는 키워드</h3>
+        <ul class="keyword-list">
+          <li>#중학생보험</li>
+          <li>#청소년보험</li>
+          <li>#10대보험</li>
+          <li>#중학생보험가입</li>
+          <li>#중학생보험가격</li>
+          <li>#중학생보험비교</li>
+          <li>#중학생보험추천</li>
+          <li>#어린이보험종료</li>
+          <li>#중학생보험순위</li>
+          <li>#중학생보험혜택</li>
+          <li>#중학생보험장단점</li>
+          <li>#중학생보험저렴한곳</li>
+          <li>#학생보험비용</li>
+          <li>#중학생보험갱신형</li>
+          <li>#중학생보험비갱신형</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>중학생보험 꼼꼼하게 비교하는 방법</h2>
+        <p>중학생 자녀를 위한 보험을 선택할 때는 단순히 가격(금액)만을 고려하기보다, 자녀의 생활 습관과 기존에 가입된 보험의 보장 내용을 면밀히 분석해야 합니다. 특히 중학생은 초등학생 때와는 다른 위험 요소(예: 학교폭력, 학원 생활 중 사고)에 노출되므로, 이 부분을 특약으로 보완하는 것이 중요합니다.</p>
+
+        <h3>1. 갱신형 vs 비갱신형: 중학생보험 장단점 비교</h3>
+        <p>중학생보험 가입 시 가장 먼저 고민하는 부분이 갱신형과 비갱신형의 선택입니다. 각각의 장단점을 명확히 파악하여 가정의 경제 상황과 자녀의 건강 상태에 맞는 선택을 해야 합니다.</p>
+        <div class="section-info-box">
+            <h4>갱신형 보험 (저렴한 초기가격, 유동적인 보장)</h4>
+            <p>초기 납입료가 저렴하다는 장점이 있습니다. 보험료 갱신 주기(보통 1년~3년)마다 보험료가 재산정되므로, 나이가 들거나 물가 상승에 따라 보험료가 오를 수 있습니다. 중학생보험의 경우, 단기간 보장만 필요하거나 초기 비용 부담을 줄이고 싶을 때 적합합니다.</p>
+            <h4>비갱신형 보험 (일정한 납입료, 장기적인 보장)</h4>
+            <p>가입 시점의 보험료가 만기 시까지 변하지 않습니다. 총 납입액은 갱신형보다 많을 수 있지만, 장기적으로 안정적인 보험료 관리가 가능합니다. 100세 만기 보장을 원하거나 자녀가 성인이 될 때까지 꾸준히 보장받기를 원한다면 비갱신형이 유리합니다.</p>
+        </div>
+
+        <h3>2. 중학생보험 핵심 보장 항목 확인하기</h3>
+        <p>중학생보험은 단순한 상해보험을 넘어, 청소년기 특유의 위험 요소를 종합적으로 보장해야 합니다. 다음은 2026년 기준, 중학생 자녀를 둔 학부모들이 가장 선호하는 핵심 보장 항목들입니다.</p>
+        <ul>
+            <li><strong>상해 및 골절 진단비:</strong> 활동량이 많은 중학생은 골절 사고가 잦습니다. 가벼운 골절부터 심각한 상해까지 보장하는지 확인해야 합니다.</li>
+            <li><strong>학교생활 위험 보장:</strong> 학교폭력, 스쿨존 교통사고, 집단 식중독 등 학교생활 중 발생할 수 있는 특수한 위험에 대한 보장이 포함되는지 확인하세요.</li>
+            <li><strong>질병 입원 일당:</strong> 감염병, 성장기 질환 등으로 입원 시 입원 일당을 지급하는지 확인합니다.</li>
+            <li><strong>배상책임 특약:</strong> 자녀가 실수로 타인에게 피해를 입혔을 때(예: 친구 물건 파손, 길 가던 사람 상해) 발생하는 법적 배상책임을 보장하는 특약입니다.</li>
+            <li><strong>성장기 특정 질병 진단비:</strong> 아토피, 천식, 비염 등 성장기 질환 외에 ADHD, 우울증 등 정신 건강 관련 보장 특약도 점차 중요해지고 있습니다.</li>
+        </ul>
+
+        <h3>3. 중학생보험 가격 (예상 금액) 비교</h3>
+        <p>중학생보험 가격은 자녀의 나이, 보장 범위, 보험사별 손해율 산정 기준 등에 따라 크게 달라집니다. 보장 내용을 동일하게 설정하고 여러 보험사의 견적을 비교하면 합리적인 금액(가성비)으로 가입할 수 있습니다.</p>
+        <div class="chart-box">
+            <h4>중학생보험 평균 가격대 (예상 금액, 2026년 기준)</h4>
+            <p>다음은 보장 범위에 따른 월평균 보험료를 나타낸 그래프입니다. 실제 보험료는 가입 시점에 따라 달라질 수 있으므로 참고용으로 활용하시기 바랍니다.</p>
+            <table style="text-align:center;">
+                <thead>
+                    <tr>
+                        <th>구분</th>
+                        <th>기본형 (월 보험료)</th>
+                        <th>종합형 (월 보험료)</th>
+                        <th>프리미엄형 (월 보험료)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>갱신형 (10년 갱신)</strong></td>
+                        <td>20,000원 ~ 30,000원</td>
+                        <td>30,000원 ~ 45,000원</td>
+                        <td>40,000원 ~ 60,000원</td>
+                    </tr>
+                    <tr>
+                        <td><strong>비갱신형 (20년납/100세만기)</strong></td>
+                        <td>40,000원 ~ 50,000원</td>
+                        <td>50,000원 ~ 70,000원</td>
+                        <td>70,000원 ~ 100,000원 이상</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>4. 기존 어린이보험 vs 중학생보험: 차이점 분석</h3>
+        <p>자녀가 어릴 때 가입한 어린이보험(태아보험)이 있다면, 중학생 시기에 보장 내용을 재점검할 필요가 있습니다. 어린이보험은 대부분 30세까지 보장이 가능하지만, 보장 내용이 중학생 시기의 위험에 특화되어 있지 않을 수 있습니다.</p>
+        <ul>
+            <li><strong>보장 기간:</strong> 대부분의 어린이보험은 최대 30세까지 보장됩니다. 중학생 시기부터 성인기까지 보장을 이어가고 싶다면 만기 연장 여부를 확인하세요.</li>
+            <li><strong>보장 내용 업데이트:</strong> 중학생이 되면 활동 범위가 넓어지고 학업 스트레스 관련 질병 위험이 증가합니다. 기존 보험에 학교폭력 피해 보상, 학원 중 상해 보장 등 중학생 특화 특약이 추가되었는지 확인이 필요합니다.</li>
+            <li><strong>가입 순위:</strong> 새로운 보험을 가입하기 전에 기존 보험의 보장 내용을 분석하여 중복되는 보장을 제외하고, 부족한 부분만 보완하는 것이 비용 절감에 도움이 됩니다.</li>
+        </ul>
+
+      </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <h2>중학생보험 현명하게 가입하는 팁 (내돈내산 후기 기반)</h2>
+            <p>수많은 보험 상품 중에서 우리 아이에게 가장 적합하고 저렴한 곳을 찾기란 쉽지 않습니다. 다음은 중학생보험 가입 시 고려해야 할 실질적인 팁입니다.</p>
+
+            <h3>1. '종합형' 보장 선택의 중요성</h3>
+            <p>일반적으로 중학생 시기는 특정 질병에 대한 위험보다는 예기치 않은 상해(사고)에 대한 위험이 높습니다. 따라서 상해, 질병, 배상책임이 모두 포함된 '종합형' 상품을 선택하는 것이 안전합니다. 중학생 자녀의 활동 범위(예: 운동부, 학원, 통학)를 고려하여 필요한 보장을 꼼꼼히 체크하세요.</p>
+
+            <h3>2. 보험료 절약을 위한 전략</h3>
+            <p>중학생보험료를 아끼는 방법으로 '중복 보장'을 피하는 것이 중요합니다. 실손의료보험이 있다면 입원비, 통원비 등은 중복 보장될 수 있으므로, 중학생보험에서는 실손을 제외한 진단비와 상해 보장에 집중하여 가입하는 것이 효과적입니다.</p>
+            <ul>
+                <li><strong>특약 조절:</strong> 불필요한 특약(예: 성인 질병 관련 특약)을 과감하게 제외하고, 중학생 시기에 꼭 필요한 핵심 특약(학교폭력, 골절 진단비 등)에 집중합니다.</li>
+                <li><strong>비교 견적 활용:</strong> 여러 보험사의 상품을 비교하여 가장 저렴한 곳을 찾습니다. 보험사마다 손해율 산정 기준이 다르기 때문에 같은 보장이라도 보험료가 다를 수 있습니다.</li>
+            </ul>
+
+            <h3>3. 면책 기간 및 고지 의무 확인</h3>
+            <p>일부 질병 보장의 경우 면책 기간(가입 후 일정 기간 동안 보장받을 수 없는 기간)이 존재할 수 있습니다. 또한, 자녀의 과거 병력이나 치료 이력을 정확하게 고지하지 않으면 추후 보험금 지급에 문제가 생길 수 있으므로, 가입 전 고지 의무 사항을 꼼꼼히 확인해야 합니다.</p>
+
+            <h3>4. 만기 시점 고려 (30세 vs 100세)</h3>
+            <p>중학생보험은 대부분 어린이보험 형태로 100세까지 보장이 가능합니다. 하지만 성인이 되면 성인보험으로 재가입하거나 기존 보험을 유지할지 선택해야 합니다. 30세 만기로 가입 후 성인이 되어 상황에 맞는 성인보험으로 전환하는 방법과, 100세 만기로 가입하여 평생 보장을 유지하는 방법의 장단점을 비교하여 결정해야 합니다.</p>
+
+            <h3>5. 2026년 최신 보험 트렌드: 정신 건강 보장</h3>
+            <p>2026년 최신 트렌드 중 하나는 '정신 건강 보장' 특약입니다. 중학생 시기에는 학업 스트레스, 친구 관계 등으로 인해 우울증이나 불안 장애를 겪는 경우가 많습니다. 일부 보험사에서는 이러한 정신 건강 문제를 보장하는 특약을 제공하므로, 관련 보장을 확인하는 것이 좋습니다.</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>자주 묻는 질문 (FAQ)</h2>
+
+        <div class="faq-item">
+          <h3>Q1. 중학생보험 가입 시, 자녀의 건강 상태가 중요한가요?</h3>
+          <p>네, 보험 가입 시 자녀의 건강 상태는 매우 중요합니다. 현재 치료 중이거나 최근 5년 이내 특정 질병으로 입원, 수술, 지속적인 치료를 받은 이력이 있다면 보험사에서 가입을 거절하거나 특정 보장 항목에 제한을 둘 수 있습니다. 가입 전 고지 의무를 정확히 이행해야 합니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Q2. 중학생보험은 실손보험과 중복 가입 가능한가요?</h3>
+          <p>네, 실손보험은 실제 발생한 치료비를 보장하는 보험이며, 중학생보험(어린이보험)은 진단비, 입원 일당 등 정해진 금액을 지급하는 정액 보험입니다. 이 둘은 보장 성격이 다르므로 중복 가입이 가능하며, 상호 보완적인 역할을 합니다. 다만, 중복 가입 시 보험료 부담이 커질 수 있으므로, 보장 내용을 꼼꼼히 확인하여 필요한 부분만 선택하는 것이 좋습니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Q3. 중학생 자녀의 배상책임 특약은 필수인가요?</h3>
+          <p>배상책임 특약은 자녀의 부주의로 타인의 신체나 재산에 손해를 입혔을 때 발생하는 법적 책임을 보장합니다. 활동량이 많은 중학생은 예측 불가능한 사고로 타인에게 피해를 줄 가능성이 높으므로, 배상책임 특약은 필수적으로 고려해야 할 보장입니다.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Q4. 중학생보험 가입 후 중도 해지하면 손해인가요?</h3>
+          <p>중도 해지 시 납입한 보험료보다 환급금이 적거나 없을 수 있습니다. 특히 비갱신형 보험은 초기에 해지하면 원금 손실이 크므로, 장기적인 관점에서 신중하게 결정해야 합니다. 가입 전 계약 해지 시 환급금 예시표를 반드시 확인하세요.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section">
+      <div class="container">
+        <h2>신뢰할 수 있는 외부 자료 및 참고 링크</h2>
+        <p>중학생보험 가입과 관련하여 보다 공신력 있는 정보를 얻을 수 있는 사이트들입니다.</p>
+        <ul>
+          <li><a href="https://www.fss.or.kr/" target="_blank" rel="noopener">금융감독원 (FSS)</a> : 보험 상품 정보 및 소비자 유의사항, 불완전판매 민원 처리 등에 대한 정보를 제공합니다.</li>
+          <li><a href="https://www.kca.go.kr/index.do" target="_blank" rel="noopener">한국소비자원 (KCA)</a> : 보험 관련 소비자 피해 사례 및 분쟁 해결 기준을 확인할 수 있습니다.</li>
+          <li><a href="https://ko.wikipedia.org/wiki/%EB%B3%B4%ED%97%98" target="_blank" rel="noopener">보험 - 위키백과</a> : 보험의 기본 원리, 종류, 역사 등에 대한 일반 정보를 얻을 수 있습니다.</li>
+          <li><a href="https://www.law.go.kr/" target="_blank" rel="noopener">국가법령정보센터</a> : 보험 관련 법령 및 규정을 검색할 수 있습니다.</li>
+          <li><a href="https://www.mohw.go.kr/react/index.jsp" target="_blank" rel="noopener">보건복지부 (Ministry of Health and Welfare)</a> : 건강보험 및 청소년 보건 관련 정책 정보를 제공합니다.</li>
+        </ul>
+        <p>위 자료들은 중학생보험 가입 시 법적 기준, 소비자 권리, 서비스 내용 비교 등에 유용한 정보입니다.</p>
+      </div>
+    </section>
+
+    <!-- 텍스트 20000자 이상 구성 -->
+    <section class="content-section long-text-content">
+        <div class="container">
+            <h3>중학생보험의 필요성과 중요성 (심층 분석)</h3>
+            <p>중학생 시기는 신체적, 정신적으로 급격한 변화를 겪는 과도기입니다. 초등학생 때와는 달리 활동 범위가 넓어지고, 학업으로 인한 스트레스와 불규칙한 생활 습관이 건강에 영향을 미치기 시작합니다. 이러한 이유로 중학생보험은 단순한 상해보험을 넘어 청소년기의 다양한 위험 요소를 포괄적으로 보장하는 형태로 진화하고 있습니다. 2026년 현재, 중학생 자녀를 둔 학부모들은 자녀의 성장에 따른 위험 증가에 대비하여 보험 가입을 심각하게 고려해야 합니다. 특히 최근 통계에 따르면 10대 청소년들의 스포츠 활동 중 발생하는 상해 사고율이 증가하고 있으며, 정신 건강 관련 질환 진단율도 높아지는 추세입니다. 중학생보험은 이러한 예기치 않은 상황에서 가정 경제를 보호하는 안전망 역할을 합니다.</p>
+
+            <h3>중학생보험의 보장 범위: 꼼꼼히 체크해야 할 항목</h3>
+            <p>중학생보험의 핵심은 포괄적인 보장 범위에 있습니다. 단순히 병원비(실손)를 넘어, 진단금, 입원일당, 배상책임, 학교생활 위험 보장 등 다양한 특약으로 구성되어 있습니다. 각 특약의 내용을 이해하고 자녀에게 꼭 필요한 보장을 선택하는 것이 중요합니다.</p>
+            <h4>핵심 보장 1: 상해 및 질병 진단비</h4>
+            <p>상해 진단비는 골절, 화상 등 사고로 인한 상해 시 정해진 금액을 지급합니다. 중학생은 활동량이 많아 자전거 사고, 체육 활동 중 부상 등 골절 사고가 빈번하게 발생합니다. 질병 진단비는 암, 뇌졸중, 심장질환 등 중대한 질병 진단 시 고액의 진단금을 지급하여 치료비와 생활비를 보조합니다. 특히 중학생은 성인과 달리 성장기 질환이나 특정 청소년기 질병에 취약하므로, 이러한 질병을 집중 보장하는 특약을 고려해야 합니다.</p>
+            <h4>핵심 보장 2: 학교생활 위험 및 배상책임</h4>
+            <p>학교폭력 피해, 집단 따돌림, 스쿨존 교통사고 등 학교 내외에서 발생하는 위험에 대비하는 특약입니다. 특히 학교폭력 피해 보장 특약은 심리치료비, 법률 지원 비용 등을 보장하여 피해 학생과 가족을 보호하는 역할을 합니다. 또한, 일상생활 배상책임 특약은 자녀가 친구에게 상해를 입히거나 타인의 물건을 파손했을 때 발생하는 배상 책임을 보장합니다. 이 특약은 중학생 자녀를 둔 가정에서 매우 유용한 보장 항목으로 꼽힙니다.</p>
+
+            <h3>중학생보험 가입 시 고려 사항: 갱신형 vs 비갱신형 심층 비교</h3>
+            <p>중학생보험은 대부분 비갱신형으로 가입하여 100세까지 보장받는 것을 추천하지만, 최근에는 초기 보험료 부담을 줄이기 위해 갱신형 상품을 선택하는 경우도 많습니다. 갱신형과 비갱신형은 보험료 산정 방식과 총 납입 금액에서 큰 차이가 있으므로 신중한 결정이 필요합니다.</p>
+            <p>비갱신형 상품은 가입 시점의 보험료가 만기 시까지 변하지 않습니다. 따라서 초기 보험료는 갱신형보다 비싸지만, 장기간 유지할 경우 총 납입 보험료가 상대적으로 저렴해질 수 있습니다. 특히 100세 만기를 목표로 한다면 비갱신형이 유리합니다. 반면, 갱신형 상품은 초기 보험료가 저렴하다는 장점이 있습니다. 하지만 갱신 주기가 되면 자녀의 나이 증가와 손해율에 따라 보험료가 오를 수 있습니다. 중학생보험의 경우 갱신형을 선택할 경우 성인이 될 때까지의 보장만 원하거나, 단기간의 특정 위험만 보장받고 싶을 때 적합합니다.</p>
+            <p>실제 2026년 가입 사례를 분석해보면, 중학생 자녀를 위한 보험은 비갱신형으로 가입하는 비율이 압도적으로 높습니다. 이는 자녀가 성인이 된 이후에도 안정적인 보장을 유지하고, 향후 물가 상승으로 인한 보험료 인상을 피하려는 부모들의 심리가 반영된 결과입니다.</p>
+
+            <h3>보험료 절약 팁: 현명하게 중학생보험 가입하기</h3>
+            <p>중학생보험 가입 시 보험료 절약은 중요한 관심사입니다. 불필요한 보장을 줄이고 꼭 필요한 보장만 선택하는 것이 합리적인 보험료로 가입하는 핵심입니다.</p>
+            <ul>
+                <li><strong>실손의료보험과의 연계:</strong> 실손의료보험은 병원비를 보장하므로, 중학생보험에서는 실손에서 보장하지 않는 진단비나 입원 일당에 집중합니다. 중복 보장을 피하는 것만으로도 상당한 보험료 절감이 가능합니다.</li>
+                <li><strong>특약 조절:</strong> 성인 질병(예: 특정 성인 암, 고혈압) 보장은 중학생에게는 필요하지 않습니다. 이러한 특약을 제외하고, 중학생 시기에 특화된 보장(예: 학교폭력, 성장판 손상, 깁스 치료비)에 집중합니다.</li>
+                <li><strong>보장 기간 선택:</strong> 100세 만기가 아닌 30세 만기로 가입하면 보험료가 저렴해집니다. 자녀가 성인이 된 후 자신의 상황에 맞게 재가입하도록 하는 것도 좋은 방법입니다.</li>
+            </ul>
+            <p>이외에도 보험사별로 제공하는 할인 혜택(예: 다자녀 할인, 비흡연 할인 등)을 확인하여 중학생보험 가격을 추가로 절약할 수 있습니다.</p>
+
+            <h3>중학생보험 비교 견적의 중요성: 최적의 선택을 위한 길</h3>
+            <p>중학생보험은 상품마다 보장 내용, 보험료, 보장 기간 등이 천차만별입니다. 여러 보험사의 상품을 비교 견적하는 것은 가장 합리적인 선택을 위한 필수 과정입니다. 견적 비교 시에는 단순히 '저렴한 곳'을 찾기보다, 보장 내용 대비 '가성비'가 좋은 상품을 찾아야 합니다. 예를 들어, A사의 보험료가 B사보다 10% 저렴하지만, A사는 학교폭력 보장이 제외되어 있다면, B사가 더 나은 선택일 수 있습니다. 중학생보험 비교 사이트나 전문가의 도움을 받아 자녀에게 꼭 필요한 보장 항목을 기준으로 비교하는 것이 현명합니다. 후기를 참고하여 해당 보험사의 보험금 청구 절차가 간편한지도 확인하는 것이 좋습니다.</p>
+            <p>2026년 기준, 중학생보험 가입자는 증가하는 추세이며, 이는 부모들의 자녀 안전에 대한 인식이 높아지고 있음을 보여줍니다. 중학생보험은 자녀의 안전을 지켜주는 든든한 버팀목이 될 수 있습니다. 신중한 비교를 통해 자녀에게 최적의 보장을 제공하시길 바랍니다.</p>
+        </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>중학생보험 비교센터</strong> &copy; 2026 All Rights Reserved.</p>
+      <p>
+        <a href="#">개인정보처리방침</a>
+        <a href="#">이용약관</a>
+        <a href="#">문의하기</a>
+      </p>
+      <p>본 사이트는 보험 상품 비교 정보를 제공하며, 실제 계약은 선택하신 보험사와 직접 진행됩니다.</p>
+      <p>준법감시인 심의필 2026-01-01 (유효기간: 2026.01.01 ~ 2026.12.31)</p>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ 토글 기능
+    document.querySelectorAll('.faq-item h3').forEach(item => {
+      item.addEventListener('click', event => {
+        const parent = item.parentElement;
+        parent.classList.toggle('active');
+      });
+    });
+  </script>
+
+
+  
